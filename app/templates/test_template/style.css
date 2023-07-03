@@ -1,0 +1,115 @@
+body{
+    font-size: 15pt;
+    background-color: wheat;
+}
+
+header{
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+header .web-name{
+    display: inline;
+    font-size: 70px;
+    font-family: cursive;
+    margin: 25px;
+    padding: 10px;
+    border: 5px solid grey;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 50px;
+}
+
+header .menu{
+    display: inline;
+    float: right;
+    margin: 35px;
+}
+
+.menu a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid pink;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+}
+
+.menu a:hover{
+    background-color: darkgrey;
+}
+
+.menu a:visited{
+    background-color: grey;
+}
+
+.product-section{
+    box-sizing: border-box;
+    margin: 50px auto;
+}
+
+
+.product-section span{
+    position: absolute;
+    top: 142px;
+    left: 40px;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.products .product-items{
+    text-align: center;
+}
+
+.product-items .item{
+    width: 300px;
+    height: 350px;
+    border: 1px solid black;
+    margin: 30px;
+}
+
+.product-items img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.product-items .item-name{
+    text-align: center;
+    padding: 10px;
+}
+
+.item{
+    display: inline-block;
+}
+.item .description{
+    max-height: 50px;
+    overflow: hidden;
+}
+
+.option{
+    margin: 10px auto;
+}
+
+.item .option .show-more{
+    color: whitesmoke;
+    background-color: aqua;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline;
+}
+
+
+.item .option .order{
+    display: inline;
+    background-color: beige;
+    padding: 10px;
+    border-radius: 10px;
+    color: tomato;
+}

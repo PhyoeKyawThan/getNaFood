@@ -61,55 +61,62 @@ header .menu{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.products .product-items{
+.products{
     text-align: center;
 }
 
-.product-items .item{
+.products .card{
+    display: inline-block;
     width: 300px;
     height: 350px;
-    border: 1px solid black;
-    margin: 30px;
+    margin: 50px;
+    background-color: bisque;
+    border: 1px solid saddlebrown;
+    box-shadow: 0 0 10px 10px rgb(27, 27, 48);
+    border-radius: 10px;
 }
 
-.product-items img{
-    width: 100%;
-    height: 100%;
-    border: 1px solid black;
-}
-
-.product-items .item-name{
+.card .name{
     text-align: center;
-    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
 }
 
-.item{
-    display: inline-block;
+.card .image{
+    width: 100%;
 }
-.item .description{
-    max-height: 50px;
+
+.image img{
+    width: 95%;
+    border-radius: 10px;
+}
+
+.card .description{
+    max-height: 60px;
+    font-size: 0.9em;
     overflow: hidden;
 }
 
-.option{
-    margin: 10px auto;
+.card .option{
+    margin: 35px auto;
+    box-sizing: border-box;
 }
 
-.item .option .show-more{
+.option .more{
+    display: inline;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 10px;
     color: whitesmoke;
-    background-color: aqua;
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 10px;
-    display: inline;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-.item .option .order{
+.option .buy-now{
     display: inline;
-    background-color: beige;
+    background-color: steelblue;
     padding: 10px;
     border-radius: 10px;
-    color: tomato;
+    color: beige;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+

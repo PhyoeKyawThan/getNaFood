@@ -4,3 +4,5 @@ app = Flask(__name__)
 app.config.from_pyfile("config.py")
 
 from . import views
+from .models import User, Order
+

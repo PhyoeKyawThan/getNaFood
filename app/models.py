@@ -18,6 +18,9 @@ class Connect:
                             price INTEGER,
                             FOREIGN KEY(user_id) REFERENCES user(id)
                             )""")
+    def show(self, table_name:str)->object:
+        return self.cursor.execute(f"select * from {table_name}")
+    
     def close(self)->str:
         self.cursor.close()
         self.conn.close()
@@ -30,8 +33,6 @@ class User(Connect):
         self.conn.commit()
         return True
     
-    def show(self):
-        return self.cursor.execute("select * from user")
 class Order(Connect):
     # def __init__(self)->None:
     #     self.cursor.execute("""create table if not exists order(
@@ -52,11 +53,10 @@ class Order(Connect):
 
 if __name__ == '__main__':
     order = Order()
-    # order.insert(3, "Banana", 3, 4.5)
-    order.close()
-    conn = Connect()
-    datas = conn.cursor.execute("select username from orders join user on orders.user_id = user.id")
-    for x in datas:
+    user = order.cursor.execute("select id from user where username = 'domak'")
+    # user.insert("domak", "domak@gmail.com", "password")
+    user = order.cursor.fetchone()[0]
+    order.insert(user, "apple", 5, 4)
+    for x in order.show(table_name="orders"):
         print(x)
-    conn.close()
-    
+    order.close()

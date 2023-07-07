@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request, jsonify
 from . import app
 
 @app.route("/")
@@ -9,7 +9,6 @@ def index():
 def home():
     return redirect(url_for("index"))
 
-# # route for ordered 
-# @app.route("/orders")
-# def show_order():
-    
+@app.route("/signUp")
+def sign_up_form():
+    return render_template("sign_up.html")

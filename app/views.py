@@ -9,7 +9,7 @@ def index():
 def home():
     return redirect(url_for("index"))
 
-# route for ordered 
-@app.route("/orders")
-def show_order():
+# # route for ordered 
+# @app.route("/orders")
+# def show_order():
     

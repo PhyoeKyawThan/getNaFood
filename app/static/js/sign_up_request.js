@@ -6,16 +6,22 @@ let datas = {
 
 let password = document.getElementById("password");
 let re_pass = document.getElementById("re-password");
-if(password === re_pass){
-    fetch("url_for('auth/sign_up')", {
-        method: "POST", 
-        headers: {
+let send = document.getElementById("send");
+send.addEventListener("click", ()=>{
+    if(password === re_pass){
+    const URL = 'auth/sign_up/'
+    fetch(URL, {
+        method: "POST",
+        headers:{
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(datas)
-    })
-    .then(response => response.json())
-    .then(result => {
-        console.log()
+    }).then(response => 
+            response.json())
+    .then(data=>{
+        console.log(data)
+    }).catch(err=>{
+        console.log(err);
     })
 }
+});

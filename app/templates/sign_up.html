@@ -11,13 +11,14 @@
     </style>
 </head>
 <body>
-    <form action="/auth/sig_up" method="post">
+    <form method="post">
         <input type="text/username" name="username" id="username" placeholder="username">
         <input type="email" name="email" id="email" placeholder="email">
         <input type="password" name="password" id="password" placeholder="password">
         <p id="alert"></p>
         <input type="password" name="password" id="re-password" placeholder="re-enter">
-        <input type="submit" value="Sign Up">
+        <input type="submit" value="Sign Up" id="send">
     </form>
+    <script src="{{ url_for('static', filename='js/sign_up_request.js') }}"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ submit.addEventListener("click", () => {
     email: email.value,
     password: password.value,
   };
-  const URL = "sign_up";
+  const URL = "auth/sign_up";
   if (password.value === re_pass.value) {
     fetch(URL, {
       method: "POST",
@@ -19,9 +19,15 @@ submit.addEventListener("click", () => {
       },
       body: JSON.stringify(datas),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if(response.redirected){
+            window.location.href = response.url;
+        }else{
+            return response.json();
+        }
+      })
       .then((data) => {
-        console.log(data.case);
+        console.log(data);
       })
       .catch((err) => {
         console.log("Error: ", err);

@@ -4,6 +4,13 @@ let password = document.getElementById("password");
 
 let submit = document.getElementById("send");
 let re_pass = document.getElementById("re-password");
+let inputs = document.querySelectorAll("input");
+
+inputs.forEach((input)=>{
+  input.addEventListener("focus", ()=>{
+    document.querySelector(".footer").style.display = "none";
+  })
+})
 submit.addEventListener("click", () => {
   let datas = {
     username: username.value,
@@ -27,12 +34,12 @@ submit.addEventListener("click", () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        document.querySelector("#alert").textContent = data.message;
       })
       .catch((err) => {
         console.log("Error: ", err);
       });
   } else {
-    document.querySelector(".alert").textContent = "Password doesn't Match";
+    document.querySelector("#alert").textContent = "Password doesn't Match";
   }
 });

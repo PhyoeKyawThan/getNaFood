@@ -1,4 +1,4 @@
-from flask import session
+from flask import session, redirect, url_for
 
 def isauth()->bool:
     if "user" in session:

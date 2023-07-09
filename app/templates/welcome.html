@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        h1{
+            color: whitesmoke;
+            background-color: green;
+            font-size: 2em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 200px auto;
+            border-radius: 50px;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <script>
+        setTimeout(()=>{
+           window.location.href = "/";
+        }, 2000);
+    </script>
+</body>
+</html>

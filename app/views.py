@@ -1,13 +1,14 @@
 from flask import render_template, redirect, url_for, request, jsonify, session
 from . import app
 from .login import isauth
-@app.route("/home")
+
+@app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/home/<response>")
-def home(response):
-    return response
+@app.route("/welcome/<response>")
+def welcome(response):
+    return render_template("welcome.html", message=response)
 
 @app.route("/signUp")
 def sign_up_form():
@@ -21,7 +22,3 @@ def login_form():
         return redirect(url_for("index"))
     return render_template("login.html")
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect(url_for("sign_up_form"))

@@ -14,7 +14,8 @@ def sign_up():
         if new_user not in users.fetchall():
             user.insert(new_user)
             session["user"] = datas
-            return redirect(url_for("index"))
+            success = "Register Succcess"
+            return redirect(url_for("welcome", response=success))
         else:
             response = {
                 "status": 409,
@@ -32,11 +33,26 @@ def login():
         login_user = (datas["username"], datas["password"])
         user = User()
         users = user.cursor.execute("select username, password from user")
+        users = users.fetchall()
         if login_user in users:
-            return redirect(url_for("index"))
+            details = user.cursor.execute(f"select * from user where username = '{datas['username']}' and password = '{datas['password']}'")
+            details = details.fetchone()
+            exist_user = {
+                "username": details[1],
+                "email": details[2],
+                "password": details[3]
+            }
+            session['user'] = exist_user
+            success = f"welcome back Mr.{login_user[0]}"
+            return redirect(url_for("welcome", response=success))
         else:
             response = {
                 "status": 404,
                 "message": "User Not Found and Sign UP"
             }
             return jsonify(response)
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("sign_up_form"))

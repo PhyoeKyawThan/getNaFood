@@ -1,8 +1,19 @@
-document.querySelector("button").addEventListener("click", ()=>{
+let username = document.querySelector("input[type='text']");
+let password = document.querySelector("input[type='password']");
+let inputs = document.querySelectorAll("input");
+
+inputs.forEach((input)=>{
+  input.addEventListener("focus", ()=>{
+    document.querySelector(".footer").style.display = "none";
+  })
+})
+
+document.querySelector("#button").addEventListener("click", ()=>{
     let datas = {
-        username: "domak", 
-        password: "pass"
+        username: username.value,
+        password: password.value
     }
+  if(datas.username != "" && datas.password != ""){
     const URL = "auth/login"
     fetch(URL, {
         method: "POST",
@@ -19,9 +30,12 @@ document.querySelector("button").addEventListener("click", ()=>{
             }
         })
         .then((data) => {
-          console.log(data);
+          document.querySelector("span").textContent = data.message;
         })
         .catch((err) => {
           console.log("Error: ", err);
         });
+      }else{
+        document.querySelector("span").textContent = "Username and password musn't be emply";
+      }
 })

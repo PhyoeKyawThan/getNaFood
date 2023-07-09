@@ -3,6 +3,15 @@ body{
     background-color: wheat;
 }
 
+.success{
+    font-size: 1em;
+    color: whitesmoke;
+    background-color: green;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
 header{
     display: block;
     margin-top: 10px;

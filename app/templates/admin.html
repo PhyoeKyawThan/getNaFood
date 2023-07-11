@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <h2>Manage</h2>
+   <div class="container">
+    <form enctype="multipart/form-data" id="form" class="form">
+        <label for="image" class="view"><img src="" alt="product Image" srcset="" id="img"></label>
+        <input type="file" name="image" id="image" style="display:none;">
+        <input type="text" name="name" id="name" placeholder="Product Name..">
+        <textarea name="detail" id="detail" placeholder="Description..."></textarea>
+        <input type="button" value="Add" id="button">
+    </form>
+
+    <div class="menu">
+        <div class="add">ADD-ITEMS</div>
+    </div>
+
+    <div class="products">
+        {% for data in datas %}
+        <div class="each-product">{{ data }}</div>
+        {% endfor %}
+    </div>
+   </div>
+   <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

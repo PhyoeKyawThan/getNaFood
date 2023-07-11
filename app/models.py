@@ -19,9 +19,32 @@ class Connect:
                             price INTEGER,
                             FOREIGN KEY(user_id) REFERENCES user(id)
                             )""")
+        self.cursor.execute("""CREATE TABLE IF NOT EXISTS products(
+                            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                            product_name varchar(100) NOT NULL,
+                            description varchar(255),
+                            product_img varchar(225)
+        )""")
+
     def get_record(self, table_name:str)->object:
         return self.cursor.execute(f"select * from {table_name}")
     
+        #delete for all relaton
+    def delete_product(self, product_name: int, id: int = 0)->bool:
+        self.cursor.execute(f"delete from products where product_name = '{product_name}'")
+        self.conn.commit()
+        return True
+    def delete_user(self, username: str)->bool:
+        self.cursor.execute(f"delete from user where username='{username}'")
+        self.conn.commit()
+        return True
+    def delete_user_order(self, user_id: int)->bool:
+        self.cursor.execute(f"delete from orders where user_id='{user_id}")
+        self.conn.commit()
+        return True
+    
+
+
     def close(self)->str:
         self.cursor.close()
         self.conn.close()
@@ -40,10 +63,19 @@ class Order(Connect):
         self.conn.commit()
         return True
 
+class Product(Connect):
+    def insert(self, product_name: str='', description: str='', product_img: str='')->bool:
+        datas = (product_name, description, product_img)
+        self.cursor.execute("insert into products(product_name, description, product_img) values(?, ?, ?)", datas)
+        self.conn.commit()
+        return True
+
 
 if __name__ == '__main__':
-    conn = Connect()
-    for x in conn.get_record("user"):
-        print(x)
-    conn.close()
+    product = Product()
+    product.insert("Phyoe Kyaw Than", "A valuabel product for ur INfo")
+    get_data = product.get_record("products")
+    get_data = get_data.fetchall()
+    print(get_data)
+    product.close()
     

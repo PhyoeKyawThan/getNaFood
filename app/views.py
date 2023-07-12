@@ -24,4 +24,4 @@ def admin():
     products = Product()
     get_products = products.get_record("products")
     get_products = get_products.fetchall()
-    return render_template("admin.html", datas=get_products)
+    return render_template("admin_dashboard/admin.html", datas=get_products)

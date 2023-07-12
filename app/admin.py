@@ -10,13 +10,15 @@ def order():
         img = request.files["image"]
         product_name = request.form.get("name")
         description = request.form.get("detail")
+        price = request.form.get("price")
+        count = request.form.get("count")
         file_name = secure_filename(img.filename)
         new_product = Product()
         if file_name:
-            img_path = path.join("static/images", file_name)
-            new_product.insert(product_name, description, img_path)
+            img_path = path.join("images", file_name)
+            new_product.insert(product_name, description, price, count, img_path)
         else:
-            new_product.insert(product_name=product_name, description=description)
+            new_product.insert(product_name, description, price, count)
         new_product.close()
 
         if img:

@@ -1,18 +1,17 @@
 *{
     margin: auto;
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
 
 }
 
-.container{
-    width: 90%;
-}
 
 form{
     text-align: center;
+    /* display: none; */
 }
 
 label{
@@ -26,7 +25,7 @@ input{
     display: block;
 }
 
-input[type="text"]{
+input{
     padding: 10px;
     margin-top: 10px;
     border-radius: 10px;
@@ -56,8 +55,8 @@ label{
     height: 100%;
 }
 
-.form{
-    
+.option{
+    margin: 10px;
 }
 
 .add{
@@ -66,4 +65,60 @@ label{
     border-radius: 10px;
     display: inline;
     margin-top: 100px;
+    background-color: green;
+    color: bisque;
+}
+
+.table{
+    text-align: center;
+}
+
+.table .column-name{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.column-name{
+    border: 1px solid black;
+}
+
+.column-name > div, .items > div{
+    max-width: 500px;
+    width: 400px;
+}
+
+.column-name > div:first-child, .items > div:first-child{
+    width: 20px;
+}
+
+.table .items{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.items{
+    border: 1px solid black;
+}
+
+.items > div{
+    max-width: 500px;
+    width: 400px;
+}
+
+div img{
+    width: 100%;
+    border: 2px solid black;
+}
+
+.edit .delete,.edit .update{
+    display: inline;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.add-new, .update_product{
+    display: none;
+    position: absolute;
+    background-color: antiquewhite;
 }

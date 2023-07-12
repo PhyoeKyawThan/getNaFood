@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sqlite3
 
 class Connect:
@@ -15,13 +16,15 @@ class Connect:
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             item_name VARCHAR(20), 
                             order_count INTEGER,
-                            price INTEGER,
-                            FOREIGN KEY(user_id) REFERENCES user(id)
+                            FOREIGN KEY(user_id) REFERENCES user(id),
+                            FOREIGN KEY(item_name) REFERENCES products(product_name)
                             )""")
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS products(
                             id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                            product_name varchar(100) NOT NULL,
+                            product_name varchar(100) PRIMARY KEY NOT NULL,
                             description varchar(255),
+                            price integer,
+                            count integer,
                             product_img varchar(225)
         )""")
 
@@ -43,11 +46,6 @@ class Connect:
         return True
     
 
-    #drop table
-    def drop(self, table_name: str)->str:
-        self.cursor.execute(f"drop table {table_name}")
-        self.conn.commit()
-        return "Drop Successfully"
 
     def close(self)->str:
         self.cursor.close()
@@ -61,26 +59,21 @@ class User(Connect):
         return True
     
 class Order(Connect):
-    def insert(self,user_id:int, item_name: str = None, order_count:int = None, price:float = None)->bool:
-        datas = (user_id, item_name, order_count, price)
-        self.cursor.execute("insert into orders(user_id, item_name, order_count, price) values(?,?,?,?)",datas)
+    def insert(self,user_id:int, item_name: str = None, order_count:int = None)->bool:
+        datas = (user_id, item_name, order_count)
+        self.cursor.execute("insert into orders(user_id, item_name, order_count, price) values(?,?,?)",datas)
         self.conn.commit()
         return True
 
 class Product(Connect):
-    def insert(self, product_name: str='', description: str='', product_img: str='')->bool:
-        datas = (product_name, description, product_img)
-        self.cursor.execute("insert into products(product_name, description, product_img) values(?, ?, ?)", datas)
+    def insert(self, product_name: str='', description: str='', price: int = 0, count: int = 0, product_img: str='')->bool:
+        datas = (product_name, description, price, count, product_img)
+        self.cursor.execute("insert into products(product_name, description, price, count, product_img) values(?, ?, ?, ?, ?)", datas)
         self.conn.commit()
         return True
 
 
-
 if __name__ == '__main__':
     product = Product()
-    # print(product.drop("products"))    product.insert(product_name="orange", description="Taste so good")
-    get_data = product.get_record("products")
-    get_data = get_data.fetchall()
-    print(get_data)
+    product.delete_product("banana")
     product.close()
-    

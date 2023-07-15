@@ -5,7 +5,10 @@ from .models import Product
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    products = Product()
+    get_products = products.get_record("products")
+    get_products = get_products.fetchall()
+    return render_template("index.html", datas=get_products)
 
 @app.route("/signUp")
 def sign_up_form():

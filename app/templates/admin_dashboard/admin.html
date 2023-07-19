@@ -25,18 +25,7 @@
             <input type="button" value="Add" id="button">
         </form>
     </div>
-    <div class="update_product" id="update_product">
-        <h3 style="text-align: center;">Update</h3>
-        <form enctype="multipart/form-data" id="form" class="form">
-            <label for="image" class="view"><img src="" alt="product Image" srcset="" id="img"></label>
-            <input type="file" name="image" id="image" style="display:none;">
-            <input type="text" name="name" id="name" placeholder="Product Name..">
-            <textarea name="detail" id="detail" placeholder="Description..."></textarea>
-            <input type="number" name="price" id="price" placeholder="Enter price of each">
-            <input type="number" name="count" id="count" placeholder="Enter the counts of product u have">
-            <input type="button" value="Add" id="button">
-        </form>
-    </div>
+    
     <div class="products">
         <div class="table">
             <div class="column-name">
@@ -48,25 +37,26 @@
                 <div>Preview</div>
                 <div></div>
             </div>
-            {% for item in datas %}
+
                 <div class="items">
-                    <div>{{ item[0] }}</div>
-                    <div>{{ item[1] }}</div>
-                    <div>{{ item[2] }}</div>
-                    <div>{{ item[3] }}</div>
-                    <div>{{ item[4] }}</div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                     <div>
-                        <img src="{{ url_for('static', filename=item[5]) }}" alt="">
+                        <img src="" alt="">
                     </div>
                     <div class="edit">
                         <div class="delete">DELETE</div>
                         <div class="update" id="update">UPDATE</div>
                     </div>
                 </div>
-            {% endfor %}
+
         </div>
     </div>
 
    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/handle_datas.js') }}"></script>
 </body>
 </html>

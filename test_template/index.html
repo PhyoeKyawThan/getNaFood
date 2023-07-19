@@ -7,65 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="product">
-        <div class="card">
-            <div class="header"><h3>Name</h3></div>
-            <div class="card-body">
-                <div class="img">
-                <img src="./orange.jpg" alt="" srcset="">
-                <div class="description">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, explicabo? Ex delectus excepturi et illum nesciunt est nulla officiis maiores, perspiciatis placeat debitis laboriosam commodi earum sit veritatis aspernatur inventore?
-                </div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="add">ADD TO CARD</div>
-            </div>
-        </div>
+    <!-- Generated HTML -->
 
-        <div class="card">
-            <div class="header"><h3>Name</h3></div>
-            <div class="card-body">
-                <div class="img">
-                <img src="./orange.jpg" alt="" srcset="">
-                <div class="description">
-                    inadskjd kaldsj kadsnventore?
-                </div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="add">ADD TO CARD</div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header"><h3>Name</h3></div>
-            <div class="card-body">
-                <div class="img">
-                <img src="./orange.jpg" alt="" srcset="">
-                <div class="description">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, explicabo? Ex delectus excepturi et illum nesciunt est nulla officiis maiores, perspiciatis placeat debitis laboriosam commodi earum sit veritatis aspernatur inventore?
-                </div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="add">ADD TO CARD</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="header"><h3>Name</h3></div>
-            <div class="card-body">
-                <div class="img">
-                <img src="./orange.jpg" alt="" srcset="">
-                <div class="description">
-                    inadskjd kaldsj kadsnventore?
-                </div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="add">ADD TO CARD</div>
-            </div>
-        </div>
+    <!-- Generated HTML -->
+<div class="items">
+    <div id="id">1</div>
+    <div>Item 1</div>
+    <div>Description 1</div>
+    <div>Price 1</div>
+    <div>Category 1</div>
+    <div><img src="/static/images/item1.jpg" alt=""></div>
+    <div class="edit">
+        <div class="delete">DELETE</div>
+        <div class="update" id="update" content="1">UPDATE</div>
     </div>
+</div>
+<!-- More items... -->
+
+<!-- Add this script after rendering the items -->
+<script>
+    // Get all the "UPDATE" buttons
+    const updateButtons = document.querySelectorAll('.update');
+
+    // Array to store data of all items
+    const allItemsData = [];
+
+    // Function to handle the click event for the "UPDATE" button
+    function handleUpdateButtonClick(itemId) {
+        // You can perform further actions here with the itemId,
+        // such as making an AJAX request to fetch more data about the item,
+        // or updating the UI, etc.
+        console.log('Updating item with ID:', itemId);
+
+        // For demonstration purposes, let's just add the item ID to the allItemsData array
+        allItemsData.push(itemId);
+    }
+
+    // Add a click event listener to each "UPDATE" button
+    updateButtons.forEach(updateButton => {
+        updateButton.addEventListener('click', () => {
+            // Get the data associated with this button
+            const itemId = updateButton.getAttribute('content');
+            handleUpdateButtonClick(itemId);
+        });
+    });
+</script>
+
 </body>
 </html>

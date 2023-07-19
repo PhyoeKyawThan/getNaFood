@@ -21,10 +21,10 @@ class Connect:
                             )""")
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS products(
                             id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                            product_name varchar(100) PRIMARY KEY NOT NULL,
+                            product_name varchar(100) NOT NULL,
                             description varchar(255),
-                            price integer,
-                            count integer,
+                            price INTEGER,
+                            count INTEGER,
                             product_img varchar(225)
         )""")
 
@@ -46,6 +46,13 @@ class Connect:
         return True
     
 
+    # update
+    def update_product(self, id: int, *args)->bool:
+        for x in args:
+            self.cursor.execute(f"update products set {x[0]} = {x[1]} where id = {id}")
+            self.conn.commit()
+        return True
+
 
     def close(self)->str:
         self.cursor.close()
@@ -61,7 +68,7 @@ class User(Connect):
 class Order(Connect):
     def insert(self,user_id:int, item_name: str = None, order_count:int = None)->bool:
         datas = (user_id, item_name, order_count)
-        self.cursor.execute("insert into orders(user_id, item_name, order_count, price) values(?,?,?)",datas)
+        self.cursor.execute("insert into orders(user_id, item_name, order_count) values(?,?,?)",datas)
         self.conn.commit()
         return True
 
@@ -75,5 +82,9 @@ class Product(Connect):
 
 if __name__ == '__main__':
     product = Product()
-    product.delete_product("banana")
+    product.update_product(9, ("product_name", "'domak'"), ("description", "'test'"), ("product_img", "'images/logo.jpeg'"))
+    get_data = product.get_record("products")
+    get_data = get_data.fetchall()
+    for data in get_data:
+        print(data)
     product.close()

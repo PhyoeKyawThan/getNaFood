@@ -46,6 +46,13 @@ class Connect:
         return True
     
 
+    # update
+    def update_product(self, id: int, *args)->bool:
+        for x in args:
+            self.cursor.execute(f"update prdoucts set {x[0]} = {x[1]} where id = {id: int}")
+            self.conn.commit()
+        return True
+
 
     def close(self)->str:
         self.cursor.close()

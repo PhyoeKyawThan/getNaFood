@@ -19,8 +19,10 @@ body{
 }
 
 header{
-    display: block;
+    display: flex;
+    flex-wrap: nowrap;
     margin-top: 10px;
+    width: 90%;
     padding: 10px;
 }
 
@@ -30,15 +32,15 @@ header .web-name{
     font-family: cursive;
     margin: 25px;
     padding: 10px;
+    width: 500px;
+    text-align: center;
     border: 5px solid grey;
     border-top-right-radius: 40px;
     border-bottom-left-radius: 50px;
 }
 
 header .menu{
-    display: inline;
-    float: right;
-    margin: 35px;
+    text-align: right; 
 }
 
 .menu a{
@@ -61,15 +63,18 @@ header .menu{
 }
 
 .product-section{
-    box-sizing: border-box;
     margin: 50px auto;
+    width: 95%;
 }
 
 
 .product-section span{
-    position: absolute;
-    top: 142px;
-    left: 40px;
+    display: block;
+    margin-left: 20px;
+    width: 100px;
+    position: relative;
+    top: -24px;
+    text-align: center;
     background-color: whitesmoke;
     padding: 10px;
     border-radius: 50px;
@@ -78,11 +83,12 @@ header .menu{
 
 .product{
     width: 90%;
+    text-align: center;
 }
 
 .product .card{
     display: inline-block;
-    margin: 20px auto;
+    margin: 20px;
     width: 300px;
     border: 1px solid whitesmoke;
     box-shadow: 0 0 10px;

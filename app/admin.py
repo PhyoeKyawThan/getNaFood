@@ -5,7 +5,7 @@ from os import path
 from .models import Product
 
 @app.route('/add_product', methods=["POST", "GET"])
-def order():
+def add_product():
     if request.method == "POST":
         img = request.files["image"]
         product_name = request.form.get("name")
@@ -33,3 +33,8 @@ def order():
         return jsonify(response)
 
     
+# @app.route("/manage/admin/update/<id: int>", methods=["POST", "GET"])
+# def update_product(id: int):
+#     if request.method == 'POST':
+#         img = request.files["image"]
+        

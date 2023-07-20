@@ -31,12 +31,15 @@ let showData = (datas)=>{
         let count = document.createElement("div");
         let preview = document.createElement("div");
         let img = document.createElement("img");
+        preview.className
         
         // edit section 
         let edit = document.createElement("div");
+        edit.className = "edit";
         let delete_ = document.createElement("div");
         delete_.className = "delete";
         let update = document.createElement("div");
+        update.content = data;
         update.className = "update";
 
         items.appendChild(id).innerText = datas[data].id;
@@ -46,7 +49,19 @@ let showData = (datas)=>{
         items.appendChild(count).innerText = datas[data].count;
         items.appendChild(preview);
         preview.appendChild(img).src = "/static/"+datas[data].img_path;
-        
-}   
-
+        items.appendChild(edit);
+        edit.appendChild(delete_).innerText = "DELETE";
+        edit.appendChild(update).innerText = "UPDATE";
+        updateData(update);
+    
+    }   
 }
+
+
+let updateData = (update_btn)=>{
+    update_btn.addEventListener("click", (e)=>{
+        e.preventDefault();
+
+        
+    })
+};

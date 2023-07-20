@@ -82,7 +82,7 @@ class Product(Connect):
 
 if __name__ == '__main__':
     product = Product()
-    product.insert("banana", "good taste", 100, 20, "images/banana.jpg")
+    product.insert("Orange", "good taste with juice", 200, 10, "images/orange.jpg")
     get_data = product.get_record("products")
     get_data = get_data.fetchall()
     for data in get_data:

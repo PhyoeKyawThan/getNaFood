@@ -33,7 +33,11 @@ let showData = (datas)=>{
         let img = document.createElement("img");
         
         // edit section 
-        
+        let edit = document.createElement("div");
+        let delete_ = document.createElement("div");
+        delete_.className = "delete";
+        let update = document.createElement("div");
+        update.className = "update";
 
         items.appendChild(id).innerText = datas[data].id;
         items.appendChild(name).innerText = datas[data].product_name;

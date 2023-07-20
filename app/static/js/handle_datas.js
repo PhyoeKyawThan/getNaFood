@@ -32,12 +32,17 @@ let showData = (datas)=>{
         let preview = document.createElement("div");
         let img = document.createElement("img");
         
+        // edit section 
+        
+
         items.appendChild(id).innerText = datas[data].id;
         items.appendChild(name).innerText = datas[data].product_name;
         items.appendChild(detail).innerText = datas[data].detail;
         items.appendChild(price).innerText = datas[data].price;
         items.appendChild(count).innerText = datas[data].count;
+        items.appendChild(preview);
+        preview.appendChild(img).src = "/static/"+datas[data].img_path;
         
 }   
 
-
+}

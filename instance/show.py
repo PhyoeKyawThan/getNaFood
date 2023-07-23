@@ -51,7 +51,7 @@ class Connect:
     # update
     def update_product(self, id: int, *args)->bool:
         for x in args:
-            self.cursor.execute(f"update products set {x[0]} = {x[1]} where id = {id}")
+            self.cursor.execute(f"update products set {x[0]} = '{x[1]}' where id = {id}")
             self.conn.commit()
         return True
 
@@ -83,14 +83,7 @@ class Product(Connect):
 
 
 if __name__ == '__main__':
-    def check(id, update):
-        product = Product()
-        current = product.get_record_by_id(id, "products")
-        current = current.fetchone()
-        for length in range(0, len(current)):
-            for up_len in update:
-                if current[length] == up_len[0]:
-                    print(True)
-        product.close()
-    update = [("product_name", "orang")]
-    check(5, update)
+    product = Product()
+    update = ("product_name", "orange")
+    product.update_product(5, update)
+    product.close()

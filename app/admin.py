@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from os import path
 from .models import Product, Connect
 
+
 @app.route('/add_product', methods=["POST", "GET"])
 def add_product():
     if request.method == "POST":
@@ -44,10 +45,50 @@ def delete_product(name):
 def update_form(id):
     if request.method == "POST":
         datas = request.get_json()
-        print(datas)
+        product = Product()
+        if(str(list(datas.values())[0])):
+            update_data = (list(datas.keys())[0], f"'{list(datas.values())[0]}'")
+            product.update_product(id, update_data)
+        else:
+            update_data = (list(datas.keys())[0], list(datas.values())[0])
+            product.update_product(id, update_data)
+        product.close()
+        change_data = list(datas.values())[0]
         response = {
             "status": 200,
-            "message": "New Product Added",
-            "redirect": "/manage/admin"
+            "message": "Updated datas",
+            "updated_data": change_data
         }
+        print(response)
+        return jsonify(response)
+
+@app.route("/manage/admin/update/product_image/<int:id>", methods=["POST", "GET"])
+def img_update(id):
+    if request.method == "POST":
+        img = request.files["img"]
+        filename = secure_filename(img.filename)
+        if img:
+            if path.exists(path.join(app.config["UPLOAD_FOLDER"], filename)):
+                product = Product()
+                img_path = path.join("images", filename)
+                update_data = ("product_img", f"'{img_path}'")
+                product.update_product(id, update_data)
+                product.close()
+                response = {
+                    "status": 403,
+                    "message": "File already exists",
+                    "updated_data": img_path
+                }
+            else:
+                product = Product()
+                img_path = path.join("images", filename)
+                update_data = ("product_img", f"'{img_path}'")
+                product.update_product(id, update_data)
+                product.close()
+                img.save(path.join(app.config["UPLOAD_FOLDER"], filename))
+                response = {
+                    "status": 200,
+                    "message": "Image Updated",
+                    "updated_data": img_path
+                    }
         return jsonify(response)

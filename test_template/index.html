@@ -1,109 +1,36 @@
-<!-- update_btns.forEach((update)=>{
-    update.addEventListener("click", (e)=>{
-        console.log(e.target.content);
-        let form = `
-    <style>
-        .update{
-        position: absolute;
-        display: none;
-        width: 100%;
-        text-align: center;
-        margin: 40px auto;
-    }
-
-    label{
-        display: block;
-        width: 50%;
-        height: 200px;
-        border: 1px solid black;
-    }
-
-    label img{
-        width: 100%;
-        height: 100%;
-    }
-
-    .update input, .update textarea{
-        width: 70%;
-        margin: 10px auto;
-        padding: 10px;
-        display: block;
-        border-radius: 20px;
-    }
-
-    </style>
-    <div class="update" id="update">
-    <form enctype="multipart/form-data" id="form" class="form">
-        <label for="update_select_image" class="view"><img src="" alt="Product Image" srcset="" id="update_img"></label>
-        <input type="file" name="image" id="update_select_image" style="display:none;" class="img">
-        <input type="text" name="name" id="update_name" placeholder="Product Name..">
-        <textarea name="detail" id="update_detail" placeholder="Description..."></textarea>
-        <input type="number" name="price" id="update_price" placeholder="Enter price of each">
-        <input type="number" name="count" id="update_count" placeholder="Enter the counts of product u have">
-        <input type="button" value="Add" id="button">
-    </form>
-    </div>
-    `
-    document.getElementById("container").innerHTML = form;
-    let image_show = document.getElementById("update_img");
-    let img_src = document.getElementById("update_select_image");
-    //default data or original data to update something with looking up
-    let up_name = document.getElementById("update_name");
-    let up_detail = document.getElementById("update_detail");
-    let up_price = document.getElementById("update_price");
-    let up_count = document.getElementById("update_count");
-    image_show.src = item_datas[e.target.content].img_path;
-    up_name.value = item_datas[e.target.content].product_name;
-    up_detail.value = item_datas[e.target.content].detail;
-    up_price.value = item_datas[e.target.content].price;
-    up_count.value = item_datas[e.target.content].count;
-
-    img_src.addEventListener("change", (e)=>{
-        let file = e.target.files[0];
-        let reader = new FileReader();
-
-            reader.addEventListener("load", (e)=>{
-                image_show.setAttribute("src", reader.result);
-            })
-            reader.readAsDataURL(file);
-        })
-    })
-}) -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Append NodeList in JavaScript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <div id="target-container">
-        <!-- The target container where the NodeList will be appended -->
-    </div>
-
+    <div></div>
     <script>
-        // Function to append a NodeList to a target element
-        function appendNodeList() {
-            // Get the NodeList using querySelectorAll (e.g., selecting all <p> elements)
-            var nodeList = document.querySelectorAll("p");
-
-            // Get the target element where the NodeList will be appended
-            var targetContainer = document.getElementById("target-container");
-
-            // Loop through the NodeList and append each element to the target element
-            nodeList.forEach(function (node) {
-                targetContainer.appendChild(node);
-            });
-        }
-
-        // Call the function to append the NodeList when the page loads
-        window.onload = function () {
-            appendNodeList();
-        };
+        let div = document.querySelector("div");
+        let form = document.createElement("form");
+        table.appendChild(form);
+        form.setAttribute("enctype", "multipart/form-data");
+        let input = document.createElement("input");
+        input.setAttribute("type", "file");
+        input.setAttribute("name", "img");
+        form.appendChild(input);
+        input.addEventListener("change", (e)=>{
+            let uploadOrNot = confirm("Do u want to upload?");
+            if(uploadOrNot){
+                fetch("http://127.0.0.1:5000/manage/admin/update/product_image/1", {
+                    method: "POST",
+                    body: e.target.files[0]
+                }).then(response=>response.json())
+                .then(datas=>{
+                    console.log(datas);
+                }).catch(err=>{
+                    console.log("Error: ", err);
+                })
+            }
+        })
+        
     </script>
-
-    <!-- Sample paragraphs to be selected by querySelectorAll -->
-    <p>Paragraph 1</p>
-    <p>Paragraph 2</p>
-    <p>Paragraph 3</p>
 </body>
 </html>

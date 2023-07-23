@@ -31,8 +31,13 @@ let showData = (datas)=>{
         let count = document.createElement("div");
         let preview = document.createElement("div");
         let img = document.createElement("img");
-        preview.className
-        
+        // unique id
+        id.content = data;
+        name.content = data;
+        detail.content = data;
+        price.content = data;
+        count.content = data;
+        img.content = data;
         // edit section 
         let edit = document.createElement("div");
         edit.className = "edit";
@@ -53,21 +58,71 @@ let showData = (datas)=>{
         items.appendChild(edit);
         edit.appendChild(delete_);
 
+        // update items
         name.addEventListener("click", (e)=>{
             let data_inp = prompt("Enter to update value");
-            updateData(item_datas[data].id, {name: data_inp});
-        })
+            if(data_inp){
+                name.innerText = updateData(item_datas[e.target.content].id, name, {product_name: data_inp});
+            }
+        });
         detail.addEventListener("click", (e)=>{
             let data_inp = prompt("Enter to update value");
-            updateData(item_datas[data].id, {detail: data_inp});
-        })
-        
+            if(data_inp){
+                updateData(item_datas[e.target.content].id, detail, {description: data_inp});
+            }
+        });
+        price.addEventListener("click", (e)=>{
+            let data_inp = prompt("Enter to update value");
+            if(data_inp){
+                updateData(item_datas[e.target.content].id, price, {price: data_inp});
+            }
+        });
+        count.addEventListener("click", (e)=>{
+            let data_inp = prompt("Enter to update value");
+            if(data_inp){
+                updateData(item_datas[e.target.content].id, count, {count: data_inp});
+            }
+        });
+        preview.addEventListener("click", (e)=>{
+            let id = e.target.content;
+            let div = document.createElement("div");
+            let form = document.createElement("form");
+            div.appendChild(form);
+            table.appendChild(div);
+            div.style.textAlign = "center";
+            form.setAttribute("enctype", "multipart/form-data");
+            table.appendChild(form);
+            let input = document.createElement("input");
+            input.setAttribute("type", "file");
+            input.name = "img";
+            
+            form.appendChild(input);
+            input.addEventListener("change", (e)=>{
+                let uploadOrNot = confirm("Do u want to upload?");
+                let formData  = new FormData();
+                formData.append("img", e.target.files[0]);
+                if(uploadOrNot){
+                    fetch("http://127.0.0.1:5000/manage/admin/update/product_image/" + item_datas[id].id, {
+                        method: "POST",
+                        body: formData
+                    }).then(response=>response.json())
+                    .then(datas=>{
+                         if(datas.status === 200 || datas.status === 403){
+                            img.src = "/static/" + datas.updated_data;
+                         }
+                    }).catch(err=>{
+                        console.log("Error: ", err);
+                    })
+                }
+            })
+            })
     }   
 }
 
 // Update form control
 
-let updateData = (id, datas)=>{
+let updateData = (id, element, datas)=>{
+    let change;
     fetch("/manage/admin/update/" + id, {
         method: "POST",
         headers: {
@@ -75,8 +130,8 @@ let updateData = (id, datas)=>{
         },
         body: JSON.stringify(datas)
     }).then(response=>response.json())
-    .then(data=>{
-        console.log(data);
+    .then(datas=>{
+        element.innerText = datas.updated_data;
     }).catch(err=>{
         console.log(err);
     })

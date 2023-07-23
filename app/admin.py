@@ -1,8 +1,8 @@
-from flask import request, jsonify
+from flask import request, jsonify, redirect, url_for
 from . import app
 from werkzeug.utils import secure_filename
 from os import path
-from .models import Product
+from .models import Product, Connect
 
 @app.route('/add_product', methods=["POST", "GET"])
 def add_product():
@@ -28,13 +28,26 @@ def add_product():
                 img.save(path.join(app.config["UPLOAD_FOLDER"], file_name))
         response = {
             "status": 200,
-            "message": "New Product Added"
+            "message": "New Product Added",
+            "redirect": "/manage/admin"
         }
         return jsonify(response)
 
-    
-# @app.route("/manage/admin/update/<id: int>", methods=["POST", "GET"])
-# def update_product(id: int):
-#     if request.method == 'POST':
-#         img = request.files["image"]
-        
+@app.route("/manage/admin/delete/<name>")
+def delete_product(name):
+    conn = Connect()
+    conn.delete_product(name)
+    conn.close()
+    return redirect(url_for('admin'))
+
+@app.route("/manage/admin/update/<int:id>", methods=["POST", "GET"])
+def update_form(id):
+    if request.method == "POST":
+        datas = request.get_json()
+        print(datas)
+        response = {
+            "status": 200,
+            "message": "New Product Added",
+            "redirect": "/manage/admin"
+        }
+        return jsonify(response)

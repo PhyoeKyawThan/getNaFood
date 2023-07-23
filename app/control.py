@@ -12,3 +12,4 @@ def send_data():
     datas = products.get_record("products")
     datas = datas.fetchall()
     return jsonify(datas)
+

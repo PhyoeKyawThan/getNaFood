@@ -31,6 +31,8 @@ class Connect:
     def get_record(self, table_name:str)->object:
         return self.cursor.execute(f"select * from {table_name}")
     
+    def get_record_by_id(self, id:int, table_name:str)->object:
+        return self.cursor.execute(f"select * from {table_name} where id = {id}")
         #delete for all relaton
     def delete_product(self, product_name: int, id: int = 0)->bool:
         self.cursor.execute(f"delete from products where product_name = '{product_name}'")
@@ -81,10 +83,14 @@ class Product(Connect):
 
 
 if __name__ == '__main__':
-    product = Product()
-    product.insert("Orange", "good taste with juice", 200, 10, "images/orange.jpg")
-    get_data = product.get_record("products")
-    get_data = get_data.fetchall()
-    for data in get_data:
-        print(data)
-    product.close()
+    def check(id, update):
+        product = Product()
+        current = product.get_record_by_id(id, "products")
+        current = current.fetchone()
+        for length in range(0, len(current)):
+            for up_len in update:
+                if current[length] == up_len[0]:
+                    print(True)
+        product.close()
+    update = [("product_name", "orang")]
+    check(5, update)

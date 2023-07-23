@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="../../static/css/admin.css">
 </head>
 <body>
     <h2>Manage</h2>
@@ -17,7 +18,7 @@
     <h3 style="text-align: center;">ADD NEW PRODUCT</h3>
         <form enctype="multipart/form-data" id="form" class="form">
             <label for="image" class="view"><img src="" alt="product Image" srcset="" id="img"></label>
-            <input type="file" name="image" id="image" style="display:none;">
+            <input type="file" name="image" id="image" style="display:none;" class="img">
             <input type="text" name="name" id="name" placeholder="Product Name..">
             <textarea name="detail" id="detail" placeholder="Description..."></textarea>
             <input type="number" name="price" id="price" placeholder="Enter price of each">
@@ -25,7 +26,7 @@
             <input type="button" value="Add" id="button">
         </form>
     </div>
-    
+
     <div class="products">
         <div class="table">
             <div class="column-name">
@@ -36,14 +37,11 @@
                 <div>Counts</div>
                 <div>Preview</div>
                 <div></div>
-            </div>
-
-                
-
+            </div> 
+            
         </div>
     </div>
-
-   <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
    <script src="{{ url_for('static', filename='js/handle_datas.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/admin_panel_form_controls.js') }}"></script>
 </body>
 </html>

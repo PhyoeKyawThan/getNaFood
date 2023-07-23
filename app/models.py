@@ -31,8 +31,10 @@ class Connect:
     def get_record(self, table_name:str)->object:
         return self.cursor.execute(f"select * from {table_name}")
     
+    def get_record_by_id(self, id:int, table_name:str)->object:
+        return self.cursor.execute(f"select * from {table_name} where id = {id}")
         #delete for all relaton
-    def delete_product(self, product_name: int, id: int = 0)->bool:
+    def delete_product(self, product_name: str, id: int = 0)->bool:
         self.cursor.execute(f"delete from products where product_name = '{product_name}'")
         self.conn.commit()
         return True

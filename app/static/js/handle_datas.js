@@ -95,7 +95,7 @@ let showData = (datas)=>{
             let input = document.createElement("input");
             input.setAttribute("type", "file");
             input.name = "img";
-            
+            form.setAttribute("style", "position: fixed; top: 0; background-color: grey; text-align: center; width: 100%")
             form.appendChild(input);
             input.addEventListener("change", (e)=>{
                 let uploadOrNot = confirm("Do u want to upload?");
@@ -109,6 +109,7 @@ let showData = (datas)=>{
                     .then(datas=>{
                          if(datas.status === 200 || datas.status === 403){
                             img.src = "/static/" + datas.updated_data;
+                            form.style.display = "none";
                          }
                     }).catch(err=>{
                         console.log("Error: ", err);

@@ -13,7 +13,12 @@
             <div class="menu">
                 <a href="#" title="HOME">HOME</a>
                 <a href="#" title="Orders">Orders</a>
-                <a href="{{ url_for('login_form') }}" title="Login">Login</a>
+                {% if log_condin == "Logout" %}
+                <a href="{{ url_for('logout_session') }}" title="Login">{{ log_condin }}</a>
+                {% elif log_condin == "Login" %}
+                <a href="{{ url_for('login_form') }}" title="logout">{{ log_condin }}</a>
+                {% else %}
+                {% endif %}
             </div>
         </header>
         <div class="product-section">

@@ -8,7 +8,11 @@ def index():
     products = Product()
     get_products = products.get_record("products")
     get_products = get_products.fetchall()
-    return render_template("index.html", datas=get_products)
+    if isauth():
+        log_in_out = "Logout"
+    else:
+        log_in_out = "Login"
+    return render_template("index.html", datas=get_products, log_condin = log_in_out)
 
 @app.route("/signUp")
 def sign_up_form():
@@ -25,3 +29,7 @@ def login_form():
 @app.route('/manage/admin')
 def admin():
     return render_template("admin_dashboard/admin.html")
+
+@app.route("/logout")
+def logout_session():
+    return redirect(url_for("logout"))

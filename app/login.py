@@ -11,9 +11,10 @@ def user_exist():
     user = User()
     curr = user.cursor.execute(f"select username, password from user where username='{session['user']['username']}'")
     curr = curr.fetchone()
-    if (session["user"]["username"], session["user"]["password"]) in curr:
-        user.close()
+    user.close()
+    username = session["user"]["username"]
+    password = session["user"]["password"]
+    if (username, password) == curr:
         return True
     else:
-        user.close()
         return False

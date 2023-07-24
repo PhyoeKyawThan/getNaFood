@@ -48,11 +48,11 @@ def login():
         else:
             response = {
                 "status": 404,
-                "message": "User Not Found and Sign UP"
+                "message": "User Not Found and Sign up"
             }
             return jsonify(response)
 
-@app.route("/logout")
+@app.route("/auth/logout")
 def logout():
     session.clear()
     return redirect(url_for("sign_up_form"))

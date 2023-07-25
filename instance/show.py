@@ -89,8 +89,7 @@ class Product(Connect):
 
 if __name__ == '__main__':
     order = Order()
-    datas = order.get_record_by_user("domak")
-    product = Product()
+    datas = order.get_record("orders")
     for data in datas.fetchall():
-        print(product.get_product(data[0]).fetchone())
+        print(data)
     order.close()

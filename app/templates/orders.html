@@ -1,20 +1,14 @@
 {% extends "index.html" %}
+{% block message %}
+    <span class="message" style="display: none; padding: 20px;
+    top: 0;
+    background-color: aqua; 
+    text-align: center; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    position: fixed; color: black; font-weight: bold;"></span>
+{% endblock %}
 {% block section_name %}Orders{% endblock %}
 {% block content %}
-{% for product in datas %}
-        <div class="card">
-            <div class="header"><h3>{{ product[1] }}</h3></div>
-            <div class="card-body">
-            <div class="img">
-                <img src="{{ url_for('static', filename=product[5] ) }}" alt="" srcset="">
-                <div class="description">
-                    {{ product[2] }}
-                </div>
-            </div>
-            </div>
-                <div class="footer">
-                    <div class="add">Confirm Order</div>
-                </div>
-        </div>
-                {% endfor %}
+<div class="user_orders"></div>
+<script src="{{ url_for('static', filename='js/confirm.js') }}"></script>
 {% endblock %}

@@ -30,3 +30,8 @@ def admin_exist():
         return True
     else:
         return False
+
+def user_id()->int:
+    user = User()
+    id = user.get_user_id_by_name(session["user"]["username"]).fetchone()[0]
+    return id

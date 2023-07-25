@@ -16,7 +16,11 @@ def index():
 
 @app.route("/orders")
 def view_user_order():
-    return render_template("orders.html")
+    if isauth():
+        return render_template("orders.html")
+    else:
+        response = "Please login first or sign up"
+        return render_template("login.html", message=response)
 
 @app.route("/signUp")
 def sign_up_form():

@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    {% block message %}
+    <span class="success" style="display: none; padding: 20px;
+    top: 0;
+    background-color: aqua; 
+    text-align: center; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    position: fixed; color: black; font-weight: bold;"></span>
+    {% endblock %} 
+    </div>
     <div class="container">
         <header>
             <div class="web-name">Foods N Sale</div>
@@ -38,6 +47,7 @@
                 {% block content %}
                 {% for product in datas %}
                 <div class="card">
+                    <div class="price">{{ product[3] }} mmks</div>
                     <div class="header"><h3>{{ product[1] }}</h3></div>
                     <div class="card-body">
                         <div class="img">
@@ -48,7 +58,8 @@
                         </div>
                     </div>
                     <div class="footer">
-                        <div class="add">ADD TO CARD</div>
+                        <span style="display: none;" id="product_id">{{ product[0] }}</span>
+                        <div class="add" id="{{ product[0] }}">ADD TO CART 🛒<b>{{ product[4] }}</b></div>
                     </div>
                 </div>
                 {% endfor %}

@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, jsonify, url_for, session
 from . import app
 from .models import User
-from .login import isauth
+from .login import isauth, check
 
 @app.route("/auth/sign_up", methods=['POST'])
 def sign_up():
@@ -52,7 +52,28 @@ def login():
             }
             return jsonify(response)
 
+@app.route('/auth/admin/login', methods=["POST", "GET"])
+def admin_login():
+    if "admin" not in session:
+        if request.method == "POST":
+            username = request.form["username"]
+            password = request.form["password"]
+            if check(username, password):
+                session["admin"] = {
+                    "username": username,
+                    "password": password
+                }
+                return redirect(url_for("admin"))
+            else:
+                message = "Username or password wrong, try again!"
+                return render_template("admin_dashboard/login.html", alert=message)
+        else:
+            return render_template("admin_dashboard/login.html")
+    else:
+        return redirect(url_for("admin"))
+
 @app.route("/auth/logout")
 def logout():
     session.clear()
-    return redirect(url_for("sign_up_form"))
+    return redirect(url_for("index"))
+

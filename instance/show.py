@@ -13,7 +13,7 @@ class Connect:
         )""")
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS orders(
                             user_id INTEGER,
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            order_id INTEGER PRIMARY KEY AUTOINCREMENT,
                             item_name VARCHAR(20), 
                             order_count INTEGER,
                             FOREIGN KEY(user_id) REFERENCES user(id),
@@ -29,10 +29,15 @@ class Connect:
         )""")
 
     def get_record(self, table_name:str)->object:
-        return self.cursor.execute(f"select * from {table_name}")
+        return self.cursor.execute(f"select distinct * from {table_name}")
     
     def get_record_by_id(self, id:int, table_name:str)->object:
         return self.cursor.execute(f"select * from {table_name} where id = {id}")
+    
+    def get_product(self, product_name: str):
+        return self.cursor.execute(f"select * from products where product_name = '{product_name}'")
+    def get_record_by_user(self, username:str):
+        return self.cursor.execute(f"select item_name from orders, user where user.username = '{username}' and user.id = orders.user_id")
         #delete for all relaton
     def delete_product(self, product_name: int, id: int = 0)->bool:
         self.cursor.execute(f"delete from products where product_name = '{product_name}'")
@@ -83,7 +88,9 @@ class Product(Connect):
 
 
 if __name__ == '__main__':
+    order = Order()
+    datas = order.get_record_by_user("domak")
     product = Product()
-    update = ("product_name", "orange")
-    product.update_product(5, update)
-    product.close()
+    for data in datas.fetchall():
+        print(product.get_product(data[0]).fetchone())
+    order.close()

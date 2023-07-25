@@ -33,6 +33,13 @@ class Connect:
     
     def get_record_by_id(self, id:int, table_name:str)->object:
         return self.cursor.execute(f"select * from {table_name} where id = {id}")
+    
+    def get_record_by_user(self, username:str):
+        return self.cursor.execute(f"""select id, product_name, description, price, count, product_img 
+                                   from products, orders, user 
+                                   where user.username = '{username}' 
+                                   and user.id = orders.user_id 
+                                   and orders.item_name = product""")
         #delete for all relaton
     def delete_product(self, product_name: str, id: int = 0)->bool:
         self.cursor.execute(f"delete from products where product_name = '{product_name}'")

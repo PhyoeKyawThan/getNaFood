@@ -11,8 +11,8 @@
         <header>
             <div class="web-name">Foods N Sale</div>
             <div class="menu">
-                <a href="#" title="HOME">HOME</a>
-                <a href="#" title="Orders">Orders</a>
+                <a href="/" title="HOME">HOME</a>
+                <a href="{{ url_for('view_user_order') }}" title="Orders">Orders</a>
                 {% if log_condin == "Logout" %}
                 <a href="{{ url_for('logout_session') }}" title="Login">{{ log_condin }}</a>
                 {% elif log_condin == "Login" %}
@@ -23,7 +23,7 @@
         </header>
         <div class="product-section">
             <hr>
-            <span>Products</span>
+            <span>{% block section_name %}Products{% endblock %}</span>
         </div>
         <div class="product">
                 <!-- <div class="item" id="card">
@@ -35,6 +35,7 @@
                         <div class="order">Order</div>
                     </div>
                 </div> -->
+                {% block content %}
                 {% for product in datas %}
                 <div class="card">
                     <div class="header"><h3>{{ product[1] }}</h3></div>
@@ -51,6 +52,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endblock %}
         </div>
     </div>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>

@@ -18,3 +18,15 @@ def user_exist():
         return True
     else:
         return False
+
+def check(username, password):
+    if username == "domak" and password == "password":
+        return True
+    else:
+        return False
+
+def admin_exist():
+    if "admin" in session:
+        return True
+    else:
+        return False

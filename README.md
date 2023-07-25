@@ -1,6 +1,6 @@
 # GetNaFood
 
-![Alt text](preview/Screenshot%20from%202023-07-24%2020-49-37.png)
+![preview](preview/Screenshot%20from%202023-07-24%2020-49-37.png)
 
 ---
 - just fun project for practincing my skill 

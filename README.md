@@ -16,9 +16,7 @@ for the orders u have to login or sigup account first. After sign up or login se
 admin dashboard will be aviable "`/manage/admin`" and u need to login. u can look up the username and password under `app/login.py` but here is details Username "`domak`" and Password "`password`". After logged in, u can edit and delete the products. To update the product touch the area of the data which u want to update. U can look up it under clip.
 
 <div align="center">
-<video controls>
-  <source src="https://github.com/PhyoeKyawThan/getNaFood/blob/master/preview/adminpanel.webm" type="video/webm">
-</video>
+<iframe src="https://drive.google.com/file/d/1BL7-qUoLXjP6OgRZOk0yE9jeeh_aXXaH/preview" width="80%" allow="autoplay"></iframe>
 </div>
 
 i wrote admin dashboard in one applicaiton with home page for client, that'll take a lots of issues in production I know. as a beginner I want to practice my sills.

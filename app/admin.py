@@ -36,7 +36,7 @@ def add_product():
 
 @app.route("/manage/admin/delete/<name>")
 def delete_product(name):
-    conn = Connect()
+    conn = Product()
     conn.delete_product(name)
     conn.close()
     return redirect(url_for('admin'))
